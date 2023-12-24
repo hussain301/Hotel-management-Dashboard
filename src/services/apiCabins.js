@@ -2,6 +2,11 @@
 
 import supabase, { supabaseUrl } from './supabase';
 
+/**
+ * Fetches all cabins from the database.
+ * @returns {Promise<Array>} An array of cabin objects.
+ * @throws {Error} If there was an error fetching the cabins.
+ */
 export const getCabins = async () => {
   let { data, error } = await supabase.from('cabins').select('*');
 
@@ -35,11 +40,11 @@ export const createEditCabin = async (newCabin, id) => {
   let query = supabase.from('cabins');
   // A. create new cabin
   if (!id) {
-    console.log('this id is working')
+    
     query = query.insert([{ ...newCabin, image: imagePath }]);
   }
   // B. edit existing cabin
-  if (id)
+  if (id) 
     query = query.update({ ...newCabin, image: imagePath }).eq('id', id);
 
   const { data, error } = await query.select().single();

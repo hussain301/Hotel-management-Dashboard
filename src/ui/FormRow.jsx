@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropsTypes from 'prop-types'
+
 const StyledFormRow = styled.div`
   display: grid;
   align-items: center;
@@ -48,10 +48,6 @@ const FormRow = ({label,error,children}) => {
   )
 }
 
-FormRow.propTypes = {
-    label:PropsTypes.string,
-    error:PropsTypes.string,
-    children:PropsTypes.node.isRequired
-}
+
 
 export default FormRow

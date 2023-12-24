@@ -33,3 +33,30 @@ const FilterButton = styled.button`
     color: var(--color-brand-50);
   }
 `;
+
+const Filter = (props) => {
+  return (
+    <StyledFilter>
+      <FilterButton
+        active={props.filter === "all"}
+        onClick={() => props.setFilter("all")}
+      >
+        All
+      </FilterButton>
+      <FilterButton
+        active={props.filter === "active"}
+        onClick={() => props.setFilter("active")}
+      >
+        Active
+      </FilterButton>
+      <FilterButton
+        active={props.filter === "completed"}
+        onClick={() => props.setFilter("completed")}
+      >
+        Completed
+      </FilterButton>
+    </StyledFilter>
+  );
+};
+
+export default Filter;

@@ -87,8 +87,7 @@ const Row = ({ children }) => {
 }
 
 const Body = ({ data, render }) => {
-  if (!data.length) return
-  <Empty>No cabins found</Empty>;
+  if (!data.length) return <Empty>No cabins found</Empty>;
   return <StyledBody>{ data.map(render) }</StyledBody>
  }
 

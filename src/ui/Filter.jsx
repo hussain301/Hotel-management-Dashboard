@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 
+import { useQueryParams } from "../hooks/useUrlParams";
+
 const StyledFilter = styled.div`
   border: 1px solid var(--color-grey-100);
   background-color: var(--color-grey-0);
@@ -34,27 +36,27 @@ const FilterButton = styled.button`
   }
 `;
 
-const Filter = (props) => {
+const Filter = ({ filterField, options }) => {
+
+  const [searchParams,setQueryParams] = useQueryParams()
+
+  const setFilter = (filter) => {
+
+    setQueryParams(filterField, filter)
+   
+  }
   return (
     <StyledFilter>
-      <FilterButton
-        active={props.filter === "all"}
-        onClick={() => props.setFilter("all")}
-      >
-        All
-      </FilterButton>
-      <FilterButton
-        active={props.filter === "active"}
-        onClick={() => props.setFilter("active")}
-      >
-        Active
-      </FilterButton>
-      <FilterButton
-        active={props.filter === "completed"}
-        onClick={() => props.setFilter("completed")}
-      >
-        Completed
-      </FilterButton>
+      {options.map((option) => (
+        <FilterButton
+          key={option.value}
+          active={option.value === searchParams.get(filterField)}
+          onClick={() => setFilter(option.value)}
+        >
+          {option.label}
+        </FilterButton>
+      ))}
+      
     </StyledFilter>
   );
 };

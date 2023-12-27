@@ -1,9 +1,41 @@
 import BookingRow from "./BookingRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import Empty from "../../ui/Empty";
+import useBookings from "./useBookings";
+import Spinner from "../../ui/Spinner";
+import { useQueryParams } from "../../hooks/useUrlParams";
+
 
 function BookingTable() {
-  const bookings = [];
+  const [searchParams,] = useQueryParams()
+  const field = searchParams.get('sortBy')||'*'
+  const { bookings, isLoading} = useBookings(field)
+  if (isLoading) return <Spinner />
+  if (!bookings?.length) return <Empty resource="bookings" />;
+  
+  // Filter
+//   const filterValue = searchParams.get('status') || 'all'
+
+//   const filterBookings = (bookings, status) => {
+//   if (status === 'all') return bookings;
+
+//   return bookings?.filter(booking => booking.status === status);
+// }
+
+
+
+  // SORT
+  // const sortBy = searchParams.get('sortBy') || 'startDate-asc'
+  // const [field, order] = sortBy.split('-')
+  // const modifire = order === 'asc' ? 1 : -1
+  // console.log(field)
+  // const filteredBookings = filterBookings(bookings, filterValue)?.sort((a, b) => {
+  //   if (field ==='startDate') return modifire*(new Date(a.startDate) - new Date(b.startDate))
+  //   if (field === 'totalPrice') return modifire*(a.totalPrice-b.totalPrice)
+  // })
+
+
 
   return (
     <Menus>

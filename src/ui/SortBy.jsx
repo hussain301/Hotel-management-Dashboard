@@ -11,7 +11,7 @@ const SortBy = ({ options }) => {
     const handleChange = (e) => setQueryParam('sortBy', e.target.value)
     
 
-    console.log(sortBy)
+    
 
   return (
     <Select options={options} onChange={handleChange} type="white" value={sortBy}/>

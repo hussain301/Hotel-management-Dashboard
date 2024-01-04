@@ -4,13 +4,14 @@ import Menus from "../../ui/Menus";
 import Empty from "../../ui/Empty";
 import useBookings from "./useBookings";
 import Spinner from "../../ui/Spinner";
-import { useQueryParams } from "../../hooks/useUrlParams";
+import Pagination from "../../ui/Pagination";
+
 
 
 function BookingTable() {
-  const [searchParams,] = useQueryParams()
-  const field = searchParams.get('sortBy')||'*'
-  const { bookings, isLoading} = useBookings(field)
+  
+  
+  const { bookings,count, isLoading} = useBookings()
   if (isLoading) return <Spinner />
   if (!bookings?.length) return <Empty resource="bookings" />;
   
@@ -55,7 +56,12 @@ function BookingTable() {
             <BookingRow key={booking.id} booking={booking} />
           )}
         />
+        <Table.Footer>
+          <Pagination count={count} />
+          </Table.Footer>
       </Table>
+
+      
     </Menus>
   );
 }

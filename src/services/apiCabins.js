@@ -24,13 +24,11 @@ export const getCabins = async () => {
  * @returns {Object} - The created or edited cabin object.
  */
 export const createEditCabin = async (newCabin, id) => {
- 
   const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll(
     '/',
     ''
   );
-  const hasImagePath = newCabin?.image.startsWith?.(supabaseUrl)
- 
+  const hasImagePath = newCabin?.image.startsWith?.(supabaseUrl);
 
   const imagePath = hasImagePath
     ? newCabin.image
@@ -40,12 +38,10 @@ export const createEditCabin = async (newCabin, id) => {
   let query = supabase.from('cabins');
   // A. create new cabin
   if (!id) {
-    
     query = query.insert([{ ...newCabin, image: imagePath }]);
   }
   // B. edit existing cabin
-  if (id) 
-    query = query.update({ ...newCabin, image: imagePath }).eq('id', id);
+  if (id) query = query.update({ ...newCabin, image: imagePath }).eq('id', id);
 
   const { data, error } = await query.select().single();
   if (error) {

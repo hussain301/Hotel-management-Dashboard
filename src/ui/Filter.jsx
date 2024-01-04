@@ -39,10 +39,12 @@ const FilterButton = styled.button`
 const Filter = ({ filterField, options }) => {
 
   const [searchParams,setQueryParams] = useQueryParams()
-
+ const currentFilter = searchParams.get(filterField) || options.at(0).value;
   const setFilter = (filter) => {
 
     setQueryParams(filterField, filter)
+    if (searchParams.get('page'))
+      setQueryParams('page', 1)
    
   }
   return (
@@ -50,7 +52,7 @@ const Filter = ({ filterField, options }) => {
       {options.map((option) => (
         <FilterButton
           key={option.value}
-          active={option.value === searchParams.get(filterField)}
+          active={option.value === currentFilter}
           onClick={() => setFilter(option.value)}
         >
           {option.label}

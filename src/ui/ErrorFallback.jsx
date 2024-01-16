@@ -1,4 +1,6 @@
-import styled from "styled-components";
+/** @format */
+
+import styled from 'styled-components';
 
 const StyledErrorFallback = styled.main`
   height: 100vh;
@@ -24,8 +26,34 @@ const Box = styled.div`
   }
 
   & p {
-    font-family: "Sono";
+    font-family: 'Sono';
     margin-bottom: 3.2rem;
     color: var(--color-grey-500);
   }
 `;
+import React from 'react';
+import Heading from './Heading';
+import GlobalStyles from '../styles/GlobalStyles';
+import Button from './Button';
+
+const ErrorFallback = ({ error,resetErrorBoundary}) => {
+  return (
+    <>
+      <GlobalStyles />
+      <StyledErrorFallback>
+        <Box>
+          <Heading as='h1'>Something went wrong🤔</Heading>
+          <p>{error.message}</p>
+          <Button
+            onClick={resetErrorBoundary}
+            size='large'
+          >
+            Try Again
+          </Button>
+        </Box>
+      </StyledErrorFallback>
+    </>
+  );
+};
+
+export default ErrorFallback;

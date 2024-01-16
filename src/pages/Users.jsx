@@ -1,5 +1,5 @@
 /** @format */
-import SignupForm from '../features/authentication/SignUpForm';
+import SignupForm from '../features/authentication/SignupForm';
 import Heading from '../ui/Heading';
 
 function NewUsers() {

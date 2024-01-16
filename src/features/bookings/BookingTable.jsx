@@ -13,7 +13,7 @@ function BookingTable() {
   
   const { bookings,count, isLoading} = useBookings()
   if (isLoading) return <Spinner />
-  if (!bookings?.length) return <Empty resource="bookings" />;
+  if (!bookings.length) return <Empty resource="bookings" />;
   
   // Filter
 //   const filterValue = searchParams.get('status') || 'all'

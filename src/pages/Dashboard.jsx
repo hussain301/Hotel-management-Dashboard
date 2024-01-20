@@ -12,9 +12,7 @@ function Dashboard() {
   
   
   if (isLoading || isStaysLoading) return <Spinner />
-  console.log('bookings=>',bookings)
-  console.log('Stays=>',stays)
-  console.log('confirm Stays=>',confirmedStays)
+
   return (
     <>
     <Row type="horizontal">

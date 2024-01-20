@@ -125,3 +125,15 @@ export async function deleteBooking(id) {
   }
   return data;
 }
+
+
+export async function addBooking(booking) {
+  const { data, error } = await supabase.from('bookings').insert(booking);
+
+  if (error) {
+    console.error(error);
+    throw new Error('Booking could not be added');
+  }
+
+  return data;
+}
